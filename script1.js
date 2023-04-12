@@ -9,7 +9,6 @@ var pwlength = []
 var ingredients = []
 var passwordOutput = document.querySelector("#password")
 var generateBtn = document.querySelector("#generate");
-console.log(lowercase.length + uppercase.length + numbers.length + special.length)
 
 function generatePassword() {
   getLength()
@@ -108,9 +107,9 @@ function generatePassword() {
     var password = []
     for (var i = 0; i < pwlength; i++) {
       var randoIng = Math.floor(Math.random() * ingredients.length)
-      password += ingredients[randoIng]
+      password.push(ingredients[randoIng])
       }
-    passwordOutput.textContent = [password]
+    passwordOutput.textContent = [password.join('')]
     console.log(passwordOutput.textContent)
     console.log(password.length)
     return
