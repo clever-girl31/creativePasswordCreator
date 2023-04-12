@@ -7,7 +7,7 @@ var numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 var special = ['!', '#', '$', '%', '&', "'", '(', ')', '*', '+', ',', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', '[', '', ']', '^', '_', '`', '{', '|', '}', '~', '"', '']
 var pwlength = []
 var ingredients = []
-
+var passwordOutput = document.querySelector("#password")
 var generateBtn = document.querySelector("#generate");
 
 
@@ -98,13 +98,21 @@ function generatePassword() {
     for (var i = 0; i < pwlength; i++) {
       var randoIng = Math.floor(Math.random() * ingredients.length)
       password += ingredients[randoIng]
-    }
+      }
+    passwordOutput.textContent = [password]
+    console.log(passwordOutput.textContent)
+    return
   }
-  var passwordOutput = document.querySelector("#password")
-  passwordOutput.value = "hello world"
 }
 
 generateBtn.addEventListener("click", generatePassword)
+
+
+
+
+
+
+
 
 // var password = generatePassword();
 // var passwordText = document.querySelector("#password");
