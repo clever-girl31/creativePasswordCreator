@@ -10,15 +10,12 @@ var ingredients = []
 
 var generateBtn = document.querySelector("#generate");
 
-  // var password = generatePassword();
-  // var passwordText = document.querySelector("#password");
-  // passwordText.value = password;
 
 function generatePassword() {
   getLength()
   
   function getLength() {
-    var pwlength = prompt("Please enter the number of characters you would like in your very creative new password.")
+    pwlength = prompt("Please enter the number of characters you would like in your very creative new password.")
     if (pwlength === null) {
       return
     }
@@ -27,7 +24,7 @@ function generatePassword() {
       getLength()
     } else UcYN()
   }
-
+  
   function UcYN() {
     let wantUc = prompt("Do you want uppercase letters in your password?")
     if (wantUc ===null) {
@@ -39,10 +36,11 @@ function generatePassword() {
     } 
     if (wantUc === 'N' || wantUc === 'n') {
       LcYN()
+      return
     } else if (wantUc === 'Y' || wantUc ==='y') 
-      ingredients.push(...uppercase)
-      LcYN()
-    }
+    ingredients.push(...uppercase)
+    LcYN()
+  }
   
   function LcYN() {
     let wantLc = prompt("Do you want lowercase letters in your password?")
@@ -55,11 +53,12 @@ function generatePassword() {
     }
     if (wantLc === 'N' || wantLc === 'n') {
       numYN()
+      return
     } else if (wantLc === 'Y' || wantLc === 'y')
-      ingredients.push(...lowercase)
-      numYN()
+    ingredients.push(...lowercase)
+    numYN()
   }
-
+  
   function numYN() {
     let wantNum = prompt("Do you want numbers in your password?")
     if (wantNum === null) {
@@ -67,15 +66,16 @@ function generatePassword() {
     }
     if (wantNum !== 'Y' && wantNum !== 'N' && wantNum !== 'y' && wantNum !== 'n') {
       alert("try again")
-      LcYN()
+      numYN()
     }
     if (wantNum === 'N' || wantNum === 'n') {
       specYN()
+      return
     } else if (wantNum === 'Y' || wantNum === 'y')
-      ingredients.push(...numbers)
+    ingredients.push(...numbers)
     specYN()
   }
-
+  
   function specYN() {
     let wantSpec = prompt("Do you want special characters in your password?")
     if (wantSpec === null) {
@@ -87,26 +87,33 @@ function generatePassword() {
     }
     if (wantSpec === 'N' || wantSpec === 'n') {
       cook()
+      return
     } else if (wantSpec === 'Y' || wantSpec === 'y')
-      ingredients.push(...special)
+    ingredients.push(...special)
     cook()
   }
-
-  function cook() {
-    for (var i = 0; i < ingredients.length - 1; i++)
-    console.log(ingredients[i])
-  }
   
+  function cook() {
+    var password = []
+    for (var i = 0; i < pwlength; i++) {
+      var randoIng = Math.floor(Math.random() * ingredients.length)
+      password += ingredients[randoIng]
+    }
+  }
+  var passwordOutput = document.querySelector("#password")
+  passwordOutput.value = "hello world"
 }
 
 generateBtn.addEventListener("click", generatePassword)
 
+// var password = generatePassword();
+// var passwordText = document.querySelector("#password");
+// passwordText.value = password;
 
 // function getLength() {
   // var pwlength = prompt("Please enter the number of characters you would like in your very creative new password.")
   // if (isNaN(pwlength) || pwlength < 8 || pwlength > 128) {
     // alert("Wrong! Enter a numerical value between 8 and 128."),
-      // getLength()
+    // getLength()
   // } else input.push(pwlength)
   // UcYN()
-// }
