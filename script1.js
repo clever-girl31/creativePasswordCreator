@@ -9,29 +9,29 @@ var pwlength = []
 var ingredients = []
 var passwordOutput = document.querySelector("#password")
 var generateBtn = document.querySelector("#generate");
-
+console.log(lowercase.length + uppercase.length + numbers.length + special.length)
 
 function generatePassword() {
   getLength()
   
   function getLength() {
-    pwlength = prompt("Please enter the number of characters you would like in your very creative new password.")
+    pwlength = prompt("Enter desired character length:")
     if (pwlength === null) {
       return
     }
     if (isNaN(pwlength) || pwlength < 8 || pwlength > 128) {
-      alert("Enter a numerical value between 8 and 128.")
+      alert("Please enter a numerical value between 8 and 128.")
       getLength()
     } else UcYN()
   }
   
   function UcYN() {
-    let wantUc = prompt("Do you want uppercase letters in your password?")
+    let wantUc = prompt("Do you want uppercase letters in your password? Y/N")
     if (wantUc ===null) {
       return
     }
     if (wantUc !== 'Y' && wantUc !== 'N' && wantUc !== 'y' && wantUc !== 'n') {
-      alert("try again")
+      alert("Please answer Y/N.")
       UcYN()
     } 
     if (wantUc === 'N' || wantUc === 'n') {
@@ -43,12 +43,12 @@ function generatePassword() {
   }
   
   function LcYN() {
-    let wantLc = prompt("Do you want lowercase letters in your password?")
+    let wantLc = prompt("Do you want lowercase letters in your password? Y/N")
     if (wantLc === null) {
       return
     }
     if (wantLc !== 'Y' && wantLc !== 'N' && wantLc !== 'y' && wantLc !== 'n') {
-      alert("try again")
+      alert("Please answer Y/N.")
       LcYN()
     }
     if (wantLc === 'N' || wantLc === 'n') {
@@ -60,12 +60,12 @@ function generatePassword() {
   }
   
   function numYN() {
-    let wantNum = prompt("Do you want numbers in your password?")
+    let wantNum = prompt("Do you want numbers in your password? Y/N")
     if (wantNum === null) {
       return
     }
     if (wantNum !== 'Y' && wantNum !== 'N' && wantNum !== 'y' && wantNum !== 'n') {
-      alert("try again")
+      alert("Please answer Y/N.")
       numYN()
     }
     if (wantNum === 'N' || wantNum === 'n') {
@@ -77,20 +77,31 @@ function generatePassword() {
   }
   
   function specYN() {
-    let wantSpec = prompt("Do you want special characters in your password?")
+    let wantSpec = prompt("Do you want special characters in your password? Y/N")
     if (wantSpec === null) {
       return
     }
     if (wantSpec !== 'Y' && wantSpec !== 'N' && wantSpec !== 'y' && wantSpec !== 'n') {
-      alert("try again")
+      alert("Please answer Y/N.")
       specYN()
     }
     if (wantSpec === 'N' || wantSpec === 'n') {
-      cook()
+      checker()
       return
     } else if (wantSpec === 'Y' || wantSpec === 'y')
     ingredients.push(...special)
-    cook()
+    cook() 
+  }
+
+  function checker() {
+    if (ingredients.length === 0) {
+      alert("You must select at least one category.")
+      UcYN()
+      return
+    } else if (ingredients.length > 0) {
+      cook()
+      return
+    }
   }
   
   function cook() {
@@ -101,6 +112,7 @@ function generatePassword() {
       }
     passwordOutput.textContent = [password]
     console.log(passwordOutput.textContent)
+    console.log(password.length)
     return
   }
 }
