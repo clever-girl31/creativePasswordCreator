@@ -32,7 +32,7 @@ function generatePassword() {
     }
     // checks if input meets requirements
     if (isNaN(pwlength) || pwlength < 8 || pwlength > 128) {
-      alert("Please enter a numerical value between 8 and 128.")
+      alert("Please enter a numeric value between 8 and 128.")
       getLength()
       // if requirements are met, next sub-function commences. if not, user is looped back to beginning of current subfunction.
     } else UcYN()
