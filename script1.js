@@ -105,6 +105,7 @@ function generatePassword() {
       specYN()
     }
     if (wantSpec === 'N' || wantSpec === 'n') {
+      // since this is the last user input function, user input is sent to checker() to make sure user has responded Y to at least one prompt
       checker()
       return
     } else if (wantSpec === 'Y' || wantSpec === 'y')
@@ -112,8 +113,9 @@ function generatePassword() {
     cook() 
   }
 
-  // !resumecommentaryhere
+  // checks if user has said Y to at least one prompt
   function checker() {
+    // if answered N to all, there will be 0 objects in the ingredients array.
     if (ingredients.length === 0) {
       alert("You must select at least one category.")
       UcYN()
@@ -124,36 +126,19 @@ function generatePassword() {
     }
   }
   
+  // cook is where password is actually created
   function cook() {
     var password = []
     for (var i = 0; i < pwlength; i++) {
+      // random ingredients are added until new array length equals desired password length.
       var randoIng = Math.floor(Math.random() * ingredients.length)
       password.push(ingredients[randoIng])
       }
+    // uses .join to turn password array into a string, then inserts the generated password into the html
     passwordOutput.textContent = [password.join('')]
-    console.log(passwordOutput.textContent)
-    console.log(password.length)
     return
   }
 }
 
+// all variables and functions have been declared, now click to start.
 generateBtn.addEventListener("click", generatePassword)
-
-
-
-
-
-
-
-
-// var password = generatePassword();
-// var passwordText = document.querySelector("#password");
-// passwordText.value = password;
-
-// function getLength() {
-  // var pwlength = prompt("Please enter the number of characters you would like in your very creative new password.")
-  // if (isNaN(pwlength) || pwlength < 8 || pwlength > 128) {
-    // alert("Wrong! Enter a numerical value between 8 and 128."),
-    // getLength()
-  // } else input.push(pwlength)
-  // UcYN()
