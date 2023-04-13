@@ -1,4 +1,4 @@
-// Password Generator
+// Creative Password Creator
 
 
 // the four categories of character
@@ -34,9 +34,9 @@ function generatePassword() {
     if (isNaN(pwlength) || pwlength < 8 || pwlength > 128) {
       alert("Please enter a numerical value between 8 and 128.")
       getLength()
-    // if requirements are met, next sub-function commences. if not, user is looped back to beginning of current subfunction.
-  } else UcYN()
-}
+      // if requirements are met, next sub-function commences. if not, user is looped back to beginning of current subfunction.
+    } else UcYN()
+  }
   // the following three subfunctions follow same logical flow as getlength(), therefore comments will be fewer.
   
   // allows user to select if uppercase character are wanted
@@ -112,7 +112,7 @@ function generatePassword() {
     ingredients.push(...special)
     cook() 
   }
-
+  
   // checks if user has said Y to at least one prompt
   function checker() {
     // if answered N to all, there will be 0 objects in the ingredients array.
@@ -133,7 +133,7 @@ function generatePassword() {
       // random ingredients are added until new array length equals desired password length.
       var randoIng = Math.floor(Math.random() * ingredients.length)
       password.push(ingredients[randoIng])
-      }
+    }
     // uses .join to turn password array into a string, then inserts the generated password into the html
     passwordOutput.textContent = [password.join('')]
     return
